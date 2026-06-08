@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITW</title>
+</head>
+<body>
+    <div class="hlavicka">
+        <div class="hlavicka_text">
+            <h1>
+                <p class="ITW">
+                    <a href="#">ITW</a>
+                </p>    
+                <div class="tws">
+                    Tvorba webových stránek
+                </div>
+            </h1>
+            
+            <ul class="menu">
+                <li class="hover"><a href="#premet">Index</a></li>
+                <li class="hover"><a href="#premet">O predmetu</a></li>
+                <li class="hover"><a href="#prednasky">Prednasky</a></li>
+                <li class="hover"><a href="#vysledky">Prehled vysledku</a></li>
+                <li class="hover"><a href="#cviceni">Cviceni</a></li>
+                <li class="hover"><a href="#kotakty">Kontakt</a></li>
+                <li class="hover"><a href="#souvisejici">Souvisejici</a></li>
+            </ul>
+    
+            <section id="predmet">
+                     <h2>
+                        <p class ="opredmetu">
+                            O predmetu ITW - tvorba webovych stranek
+                        </p>
+                    </h2>
+                    <div class="opredmetu_text">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint eveniet dicta voluptatibus, rerum commodi aliquid corrupti nemo dolorum cum laboriosam sapiente at facere ut recusandae officia eius vel modi optio! Fugiat, a mollitia. Excepturi nulla corrupti, facere animi fugiat laudantium facilis tempore quo quidem pariatur, eos eligendi dolore voluptatibus quae quis ullam quia beatae non explicabo libero nam nostrum? Voluptates cumque voluptatibus reiciendis eveniet suscipit, quam tempore, dolores at velit sapiente quaerat mollitia perspiciatis nam itaque nemo neque sequi deleniti est expedita eaque modi sed quidem illo enim. Quis minus hic aut eveniet, asperiores impedit? Nemo placeat totam deserunt nulla distinctio dicta. Voluptate ut suscipit ad nobis laboriosam dolore saepe atque culpa veritatis est sequi maxime laudantium velit id, maiores rem tempora! Soluta id, cumque inventore corrupti deleniti accusamus nemo, voluptatem sed aspernatur labore tempora vel maxime sit distinctio veniam enim ea aperiam voluptate aut at expedita ipsum velit.
+                    </div>
+            </section>
+        </div>
+    </div>
+    
+    <div class= "text">
+        <div class="lavyodsek">
+            <section id="prednasky">
+                <h2>
+                    <p class ="sekcie">
+                        Prednasky
+                    </p>
+                </h2>
+                <div class="prvyodsekprednasky">
+                    <div class="prednaska">
+                        <img class="obrazokprednasky" src="icon1.gif" />
+                        <div class="iprednaska">
+                            <h3>
+                                <div class="podnadpis">
+                                    <a href="https://www.fit.vut.cz/study/course/ITW/private/prednasky/itw_p01.pdf">Internet a sluzba WWW</a>
+                                </div>
+                            </h3>
+                            <div class="prednaskytext">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, quae.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prednaska">
+                        <div class="iiprednaska">
+                            <img class="obrazokprednasky" src="icon2.gif"/>
+                            <h3>
+                                <div class="podnadpis">
+                                    <a href="https://www.fit.vut.cz/study/course/ITW/private/prednasky/itw_p02.pdf">Základy jazyka HTML</a>
+                                </div>
+                            </h3>
+                            <div class="prednaskytext">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi quaerat praesentium magni quo?
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="druhyodsekprednasky">
+                    <div class="prednaska">
+                        <img class="obrazokprednasky" src="icon3.gif"/>
+                        <h3>
+                            <div class="podnadpis">
+                                <a href="https://www.fit.vut.cz/study/course/ITW/private/prednasky/itw_p07.pdf">Pokročilé vlastnosti HTML</a>
+                            </div>
+                        </h3>
+                        <div class="prednaskytext">
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt animi architecto.
+                        </div>
+                    </div>
+                    <div class="prednaska">
+                        <div class="ivprednaska">
+                            <img class="obrazokprednasky" src="icon4.gif"/>
+                            <h3>
+                                <div class="podnadpis">
+                                    <a href="https://www.fit.vut.cz/study/course/ITW/private/prednasky/itw_p10.pdf">Architektura webu</a>
+                                </div>
+                            </h3>
+                            <div class="prednaskytext">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, ut!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="odsekvysledkov">
+                <section id="vysledky">
+                    <h2>
+                        <p class ="sekcie">
+                            Prehled vysledku
+                        </p>
+                    </h2>
+                    <table class="tabulka">
+                        <tr class="tabulkafarba">
+                            <th rowspan="3">Jmeno</th>
+                            <th colspan="6">Body</th>
+                        </tr>
+                        <tr class="tabulkafarba">
+                            <th colspan="2">2010</th>
+                            <th colspan="2">2012</th>
+                            <th colspan="2">2014</th>
+                        </tr>
+                        <tr class="tabulkafarba">
+                            <th>Pulsm.</th>
+                            <th>Zk.</th>
+                            <th>Pulsm.</th>
+                            <th>Zk.</th>
+                            <th>Pulsm.</th>
+                            <th>Zk.</th>
+                        </tr>
+                        <tr>
+                            <td class="menovtabulke">Jan Novák</td>
+                            <td>18</td>
+                            <td>72</td>
+                            <td>20</td>
+                            <td>80</td>
+                            <td>10</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td class="menovtabulke">Zuzana Černá</td>
+                            <td>10</td>
+                            <td>50</td>
+                            <td>20</td>
+                            <td>75</td>
+                            <td>25</td>
+                            <td>99</td>
+                        </tr>
+                    </table>
+                </section>
+            </div>
+        </div>
+        <div class="pravyodsek">
+            <div class="cviceniaodsek">
+                <section id="cviceni">
+                    <h2>
+                        <p class ="sekcie">
+                            Cviceni
+                        </p>
+                    </h2>
+                    <h4 class="nadpiscvicenia"><a href="https://www.fit.vut.cz/study/course/ITW/private/cviceni/#c1">DNS a HTML</a></h4>
+                    <div class="odsekcvicenia">
+                        <img class="news" src="news_icon.gif">
+                        <div class="textvodseku"> 
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        </div>
+                    </div>
+                    <h4 class="nadpiscvicenia"> <a href="https://www.fit.vut.cz/study/course/ITW/private/cviceni/#c2">Jazyk HTML</a> </h4>
+                    <div class="odsekcvicenia">
+                        <img class="news" src="news_icon.gif">
+                        <div class="textvodseku"> 
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        </div>
+                    </div>
+                    <h4 class="nadpiscvicenia"> <a href="https://www.fit.vut.cz/study/course/ITW/private/cviceni/#c3">Styl textu</a> </h4>
+                    <div class="odsekcvicenia">
+                        <img class="news" src="news_icon.gif">
+                        <div class="textvodseku"> 
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime dolores sapiente laboriosam?
+                        </div>
+                    </div>
+                    <h4 class="nadpiscvicenia"> <a href="https://www.fit.vut.cz/study/course/ITW/private/cviceni/#c4">CSS rozložení stránky</a> </h4>
+                    <div class="odsekcvicenia">
+                        <img class="news" src="news_icon.gif">
+                        <div class="textvodseku"> 
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <div class="footertext">
+            <div class="kontaktyodsek">
+                <section id="kontakty">
+                    <h2>
+                        <p class ="sekciefooter">
+                            Kontaktujte nas
+                        </p>
+                    </h2>
+                    <dl>
+                        <dt>
+                            <dd>Garant: <a href="mailto:itw-garant@fit.vutbr.cz">itw-garant@fit.vutbr.cz</a></dd>
+                        </dt>
+                        <dt>
+                            <dd>Přednášející: <a href="mailto:itw-prednasejici@fit.vutbr.cz">itw-prednasejici@fit.vutbr.cz</a></dd>
+                        </dt>
+                        <dt>
+                            <dd>Cvičící: <a href="mailto:itw-cvicici@fit.vutbr.cz">itw-cvicici@fit.vutbr.cz</a></dd>
+                        </dt>
+                    </dl>
+                </section>
+            </div>
+            <div class="bloksouvisejici">
+                <section id="souvisejici">
+                    <h2>
+                        <p class="sekciefooter">
+                            Souvisejici predmety
+                        </p>
+                    </h2>
+                    <ul class="fajky">
+                        <li><a href="https://www.fit.vut.cz/study/course/IIS/.cs">Informacni systemy</a></li>
+                        <li><a href="https://www.fit.vut.cz/study/course/PIS/.cs">Pokrocile informacni systemy</a></li>
+                        <li><a href="https://www.fit.vut.cz/study/course/280960/.cs">Analyza informacnich systemu</a></li>
+                        <li><a href="https://www.fit.vut.cz/study/course/281092/.cs">Skriptovaci jazyky</a></li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

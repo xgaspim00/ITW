@@ -1,0 +1,1533 @@
+/*
+ * Login: xgaspim00
+ *
+ * Doplnte sve reseni.
+ *
+ * Nezapomente pridat strucne hromadne komentare pro pravidla jednotlivych sekci
+ * a pro netrivialni useky kodu.
+ *
+ * Snazte se dodat aspon castecne reseni, i snaha se hodnoti.
+ */
+
+
+/***************
+ Global styles
+***************/
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Spectral';
+    font-size: 16px;
+    background-color: #fffef0;
+    overflow-x: hidden;
+  }
+
+  /* Main container styles */
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* Section styles */
+  section {
+    box-sizing: border-box;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    padding: 5rem;
+    width: 100%;
+    max-width: 1200px;
+    min-width: 768px;
+    background: #fffef0;
+    box-shadow: inset 0 0 100px rgba(139, 69, 19, 0.8), /* "Old book page" design */
+                0 0 10px 5px rgba(0, 0, 0, 0.5); /* Shadow */
+    position: relative;
+    overflow: hidden; /* Make sure stamps will not overflow */
+  }
+
+  /* Heading styles */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'IM Fell DW Pica', serif;
+    font-size: 2rem;
+  }
+
+  /* Specific heading 2 styles */
+  h2 {
+    position: relative;
+    margin-top: 0;
+    letter-spacing: 0.2rem;
+    font-size: 32px;
+    color: #000280;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+
+  /* Section heading span styles */
+  .heading span {
+    display: block;
+    text-align: center;
+    font-style: italic;
+    color: daskgray;
+    margin-bottom: 20px;
+    opacity: 50%;
+  }
+
+  /* Section content styles */
+  .section-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  /* Place ornament under every h2 */
+  h2::after {
+    content: "";
+    position: absolute;
+    width: 230px;
+    height: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 60%;
+    background-image: url('../img/ornament.svg');
+    opacity: 75%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: drop-shadow(0 5px 5px black);
+  }
+
+/*************
+ Video player
+*************/
+
+
+  /* Video player styles */
+  .video-player {
+    position: relative;
+    width: 600px;
+    margin: auto;
+    z-index: 10;
+    overflow: hidden;
+    align-items: center;
+  }
+
+  /* Play icon in the middle of the paused video */
+  .video-player[data-state="paused"]::before {
+    font-family: "Font Awesome 6 Free";
+    content: "\f04b";
+    font-weight: 900;
+    font-size: 100px;
+    position: absolute;
+    color: blue;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Position to middle */
+    z-index: 100;
+    pointer-events: none; /* Makes icon "transparent" for cursor */
+    filter: drop-shadow(0 0 3px white);
+    opacity: 60%;
+  }
+
+  /* Video content styles */
+  .video-content video {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: grayscale(100%) sepia(100%);
+    transition: filter 0.3s ease-in-out;
+  }
+
+  /* Video content hover effect */
+  .video-player:hover video {
+    filter: grayscale(10%) sepia(10%);
+  }
+
+  /* Video controls styles */
+  .video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 98%;
+    color: blue;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  /* Show controls on video player hover */
+  .video-player:hover .video-controls {
+    opacity: 1;
+  }
+
+  /* Video control button styles */
+  .video-controls button {
+    font-family: "Font Awesome 6 Free";
+    position: absolute;
+    background: none;
+    border: none;
+    color: blue;
+    font-size: 1.5rem;
+    cursor: pointer; /* Change cursor to pointer */
+    padding: 5px 10px;
+    overflow: hidden;
+    width: 44px;
+    height: 44px;
+    white-space: nowrap; /* Blocks wrapping of the button text */
+    font-weight: 900;
+    filter: drop-shadow(0 0 3px white);
+    opacity: 70%;
+  }
+
+  .video-controls button::before {
+    margin-right: 20px; /* Ensure that button text is not visible */
+  }
+
+  /* Video control button hover effect */
+  .video-controls button:hover {
+    color: white;
+  }
+
+  /* Progress bar styles */
+  .progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    appearance: none; /* Removes browser styles of progress bar */
+    background: lightgray;
+    border: none;
+    cursor: pointer;
+    opacity: 60%;
+  }
+
+  /* Progress bar track styles */
+  .progress::-webkit-progress-bar {
+    background: lightgray;
+  }
+
+  /* Progress bar fill styles */
+  .progress::-webkit-progress-value {
+    background: blue;
+  }
+
+  /* Play/pause button position */
+  .playpause {
+    top: -140%;
+    left: 10px;
+  }
+
+  /* Mute button position */
+  .mute {
+    top: -140%;
+    left: 40px;
+  }
+
+  /* Fullscreen button position */
+  .fullscreen {
+    top: -140%;
+    right: 10px;
+  }
+
+  /* Time display position */
+  .time {
+    position: absolute;
+    font-weight: bold;
+    top: -90%;
+    left: 90px;
+    filter: drop-shadow(0 0 3px white);
+  }
+
+  /* Play/pause button icon */
+  .video-player[data-state="played"] .playpause::before {
+    content: "\f04c";
+  }
+
+  .video-player[data-state="paused"] .playpause::before {
+    content: "\f04b";
+  }
+
+  /* Muted/unmuted button icon */
+  .video-player[data-mute="muted"] .mute::before {
+    content: "\f6a9";
+    color: lightgrey;
+  }
+
+  .video-player[data-mute="unmuted"] .mute::before {
+    content: "\f028";
+  }
+
+  /* Fullscreen button icon */
+  .fullscreen::before {
+    content: "\f065";
+  }
+
+  /* Fullscreen video player styles */
+  /* Set position to fixed, high z-index and stretch size to viewport */
+  .video-player.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    z-index: 10000;
+  }
+
+  /* Stretch video to fullscreen */
+  .video-player.fullscreen video {
+    width: 100%;
+    height: 100%;
+    filter: grayscale(0%) sepia(0%);
+  }
+
+  /* Video popup styles (time next to cursor while hovering on progress bar) */
+  .video-popup {
+    color: black;
+    border: 1px solid black;
+    border-radius: 10%;
+    background-color: white;
+    opacity: 80%;
+    padding: 5px;
+  }
+
+/***************
+ Header section
+***************/
+
+  /* Header styles */
+  header {
+    margin-bottom: 5rem;
+    width: 100%;
+    height: 100vh;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px 20px black;
+  }
+
+  /* Header background image styles */
+  header::before {
+    content: "";
+    /* Place image and center the image */
+    background: url('../img/bg-header.png') no-repeat center center;
+    background-size: contain;
+    width: 60%;
+    height: 76%;
+    box-shadow: inset 0 0 70px 70px black;
+    opacity: 30%;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  /* Header title span styles */
+  #header-title span {
+    color: white;
+    font-family: "IM Fell DW Pica";
+    font-size: 3rem;
+    opacity: 30%;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  /* Header hover effects */
+  header:hover::before {
+    opacity: 90%;
+  }
+
+  header:hover #header-title span {
+    opacity: 100%;
+  }
+
+  /* Hide first header title span */
+  /* I didnt see it in the assignment so I just turned it off */
+  #header-title span:nth-child(1) {
+    display: none;
+  }
+
+  /* Position header title spans */
+    #header-title span:nth-child(2) {
+      position: absolute;
+      top: 5%;
+      left: 15%;
+    }
+
+    #header-title span:nth-child(3) {
+      position: absolute;
+      top: 5%;
+      right: 10%;
+    }
+
+    #header-title span:nth-child(4) {
+      position: absolute;
+      top: 90%;
+      left: 55%;
+    }
+
+  /* Header title span pseudo-elements */
+    #header-title span:nth-child(3)::before {
+      content: "...";
+    }
+
+    #header-title span:nth-child(4)::before {
+      content: "...or ";
+    }
+
+
+/******
+ Menu
+******/
+  #header-menu {
+    position: fixed;
+    top: 35%;
+    left: -120px; /* Place menu to the left (show only a stripe with icons) */
+    width: 160px;
+    height: 300px;
+    background-color: black;
+    box-shadow: 0 0 7px 7px rgba(0, 0, 0, 1.2);
+    color: white;
+    transition: left 0.5s ease;
+    z-index: 1000;
+    opacity: 87%;
+  }
+
+  /* Hide header menu in fullscreen mode */
+  .fullscreen #header-menu {
+    display: none;
+  }
+
+  /* Header menu hover effect */
+  #header-menu:hover {
+    left: 0;
+    box-shadow: 0 0 7px 7px rgba(0, 0, 0, 1.2);
+    opacity: 82%;
+  }
+
+  /* Header menu navigation list styles */
+  #header-menu nav ul {
+    list-style: none;
+    padding-left: 50px;
+    padding-top: 8px;
+    margin: 0;
+    opacity: 100%;
+  }
+
+  /* Header menu navigation list item styles */
+  #header-menu nav ul li {
+    padding-top: 18px;
+    margin-right: 20px;
+  }
+
+  /* Header menu navigation link styles */
+    #header-menu nav ul li a {
+      text-decoration: none;
+      color: lightgray;
+      display: flex;
+      align-items: center;
+    }
+
+    #header-menu nav ul li a:hover {
+      color: blue;
+    }
+
+  /* Header menu navigation link pseudo-elements */
+    nav ul li a::before {
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      margin-right: 20px;
+      font-size: 16px;
+      transition: left 0.4s ease, opacity 0.5s ease;
+      position: absolute;
+      left: 130px;
+    }
+
+    #header-menu nav ul li a:hover::before{
+      color: lightgrey;
+    }
+
+    /* Set icons for menu */
+      nav ul li:nth-child(1) a::before {
+        content: "\f015";
+      }
+
+      nav ul li:nth-child(2) a::before {
+        content: "\f518";
+      }
+
+      nav ul li:nth-child(3) a::before {
+        content: "\f133";
+      }
+
+      nav ul li:nth-child(4) a::before {
+        content: "\f508";
+      }
+
+      nav ul li:nth-child(5) a::before {
+        content: "\f075";
+      }
+
+      nav ul li:nth-child(6) a::before {
+        content: "\f0e0";
+      }
+
+  /* Header menu navigation link hover effect */
+  #header-menu:hover nav ul li a::before {
+    position: absolute;
+    left: 25px;
+  }
+
+/*****
+ Home
+*****/
+
+  /* Home section content styles */
+  #home .section-content {
+    width: 70%;
+  }
+
+  /* Home section background image styles */
+  #home::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    right: 10%;
+    bottom: -10%;
+    background-image: url('../img/wine.png');
+    opacity: 30%;
+    background-size: 300% 200%;
+    background-position: 100% 0%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
+
+  /* Stamp */
+  #home::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    left: 0;
+    top: 20%;
+    background-image: url('../img/wine.png');
+    opacity: 30%;
+    background-size: 300% 200%;
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
+
+  /* Home elements order */
+    #home .section-content p:first-of-type {
+      order: 1;
+    }
+
+    #home .video-player {
+      order: 2;
+    }
+
+    #home .section-content p:last-of-type {
+      order: 3;
+    }
+
+
+/*********
+ Products
+*********/
+
+  /* Stamp */
+  #products::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    left: -5%;
+    top: -10%;
+    background-image: url('../img/wine.png');  
+    opacity: 30%;
+    background-size: 300% 200%;
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+  }
+
+  /* Display products content as grid */
+  #products .section-content {
+    display: grid;
+    width: 100%;
+    /* Place as many as fit on screen (minimum width of one column 220px) */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px; /* Gap between columns */
+    justify-content: center;
+  }
+
+  /* Item styles */
+    #products .section-item {
+      position: relative;
+      padding-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      background: transparent;
+      border: 1px solid #fffef0;
+      filter: grayscale(100%) sepia(100%);
+      transition: filter 0.5s ease-in-out, background-color 0.5s ease-in-out;
+    }
+
+    #products .section-item:hover {
+      background-color: white; 
+      filter: grayscale(30%);
+    }
+
+    #products .section-item img {
+      width: 100%;
+      height: 350px;
+      /* Content of image will not be stretched and will be centered */
+      object-fit: cover;
+      object-position: center;
+      order: -1;
+    }
+
+    #products .section-item:hover {
+      filter: grayscale(10%);
+    }
+
+    #products .section-item h3 {
+      font-size: 18px;
+      order: 1;
+    }
+
+    #products .section-item p {
+      width: 100%;
+      font-size: 14px;
+      font-style: italic;
+      color: #444;
+      position: absolute;
+      bottom: -30px; 
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: bottom 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    }
+
+    #products .section-item:hover p {
+      bottom: 1%;
+      opacity: 1;
+    }
+
+
+/*********
+ Services
+*********/
+
+  /* Stamp */
+  #services::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    right: -2%;
+    top: 10%;
+    background-image: url('../img/wine.png');  
+    opacity: 30%;
+    background-size: 300% 200%;
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+  }
+
+  /* Content styles */ 
+    #services .section-content h3 {
+      margin: 0;
+      margin-top: 3%;
+      font-size: 1.30rem;
+    }
+
+    #services .section-content {
+      width: 100%;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #services .section-content ul {
+      text-align: right;
+      list-style-position: inside;
+      padding-right: 47%;
+    }
+  
+  /* Center text from both sides */
+  #services .section-item p {
+    text-align: justify;
+  }
+
+  /* Border between items */
+    #services .section-item {
+      position: relative;
+      border-bottom: 1px dotted #8a6f54;
+    }
+
+    #services .section-item:last-child {
+      border-bottom: none;
+    }
+  
+
+  #services .section-item:nth-child(2) {
+    text-align: right;
+  }
+
+  /* Stamp */
+  #services .section-item:nth-child(2)::before {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    left: -12%;
+    top: 0%;
+    background-image: url('../img/wine.png');  
+    opacity: 30%;
+    background-size: 300% 200%;
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+  }
+
+  /* Stamp */
+  #services .section-item:nth-child(3)::before {
+    content: "";
+    position: absolute;
+    width: 370px;
+    height: 370px;
+    bottom: -50%;
+    left: 50%;
+    background-image: url('../img/wine.png');  
+    opacity: 30%;
+    background-size: 300% 200%;
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+  }
+
+  #services .section-item span {
+    font-size: 1.20rem;
+  }
+
+  /* Add £ in front of the price (last is for free so £ wont show) */
+  .section-item:not(:last-of-type) .price::before {
+    content: "£ ";
+  }
+
+  /* Image styles */
+    #services .section-item img {
+      width: 40%;
+      height: auto;
+      transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
+      display: block;
+      filter: grayscale(100%) sepia(100%);
+    }
+
+    #services .section-item:nth-child(1) img {
+      float: left;
+      margin: 3%
+    }
+
+    #services .section-item:nth-child(2) img {
+      float: right;
+      margin: 3%
+    }
+
+    #services .section-item:nth-child(3) img {
+      float: left;
+      margin: 3%
+    }
+
+    #services .section-item:hover img {
+      transform: scale(1.1);
+      filter: grayscale(10%) sepia(10%);
+    }
+  
+  /* References styles */
+    #services .references ul {
+      list-style: none;
+    }
+
+    #services .references a {
+      overflow: hidden;
+      position: relative;
+      width: 24px;
+      height: 24px;
+      white-space: nowrap;
+      float: left;
+      padding-bottom: 20px;
+      padding-right: 15px;
+    }
+
+    #services .section-item:nth-child(2) a {
+      float:right;
+      padding-right: 0;
+      padding-left: 15px;
+    }
+
+    /* Book icon instead of link */
+    #services .references a::before {
+      font-family: "Font Awesome 6 Free";
+      content: "\f02d";
+      font-weight: 900;
+      font-size: 24px;
+      color: black;
+      margin-right: 30px;
+    }
+
+    #services .references a:hover::before {
+      color: blue;
+    }
+
+
+/*******
+ Events 
+*******/
+
+  /* Image styles */
+    #events img {
+      width: 100%;
+      height: auto;
+      filter: grayscale(100%) sepia(100%);
+      transition: filter 0.5s ease-in-out;
+    }
+
+
+    #events img:hover {
+      filter: grayscale(10%) sepia(10%);
+    }
+  /* Set everything in events to border-box */
+  #events * {
+    box-sizing: border-box;
+  }
+
+  /* Events Layout */
+    #events .section-item:nth-child(odd) {
+      left: -27%;
+    }
+
+    #events .section-item:nth-child(even) {
+      left: 27%;
+    }
+
+    #events .section-item:nth-child(3) {
+      margin-top: 5rem;
+    }
+
+    #events .section-item:nth-child(2) {
+      margin-top: -15rem;
+    }
+
+    #events .section-item:nth-child(4) {
+      margin-top: -15rem;
+    }
+
+  /* Timestamp style */
+    /* Ensure that timestamp is whitin content */
+    #events .section-content {
+      position: relative;
+    }
+
+    /* Timestamp */
+    #events .section-content::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background-color: #8a6f54;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+    }
+
+
+  /* Time points */
+    #events .section-item::after {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background-color: white;
+      border: 4px solid #8a6f54;
+      top: 16%;
+      border-radius: 50%;
+      z-index: 1;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    #events .section-item:hover::after {
+      background-color: darkblue;
+    }
+
+    /* Connect timepoint with event */
+      #events .section-item:nth-child(odd)::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 21%;
+        width: 0;
+        z-index: 1;
+        left: 101%;
+        border: medium solid white;
+        border-width: 2px 30px 2px 2px;
+        border-color: #8a6f54;
+      }
+
+      #events .section-item:nth-child(even)::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 21%;
+        width: 0;
+        z-index: 1;
+        left: -7.5%; 
+        border: solid white;
+        border-width: 2px 30px 2px 2px;
+        border-color: #8a6f54;
+      }
+
+    /* Center timepoints on timestamp */
+    #events .section-item:nth-child(even)::after {
+      left: -13.5%;
+    }
+
+    #events .section-item:nth-child(odd)::after {
+      left: 106.5%;
+    }
+
+  /* Text */
+    #events .section-item {
+      position: relative;
+      width: 45%;
+    }
+
+    #events .section-content a {
+      text-decoration: none;
+      font-size: 22px;
+      opacity: 70%;
+      background-color: lightgrey;
+    }
+
+    #events .section-content h3 {
+      padding: 15px;
+      padding-top: 10px;
+      position: absolute;
+      z-index: 1000;
+      letter-spacing: 2px;
+      filter: grayscale(100%);
+      transition: padding 0.3s ease-in-out, top 0.3s ease-in-out,
+                  filter 0.3s ease-in-out;
+    }
+
+  /* Text layout */
+    #events .section-item:nth-of-type(1) h3 {
+      top: 65.5%;
+      left: 0;
+      border-top: 2px dotted lightgrey;
+      border-right: 2px dotted lightgrey;
+    }
+
+    #events .section-item:nth-of-type(2) h3 {
+      top: 62%;
+      right: 0;
+      border-top: 2px dotted lightgrey;
+      border-left: 2px dotted lightgrey;
+    }
+
+    #events .section-item:nth-of-type(3) h3 {
+      top: 62.5%;
+      left: 0;
+      border-top: 2px dotted lightgrey;
+      border-right: 2px dotted lightgrey;
+    }
+
+    #events .section-item:nth-of-type(4) h3 {
+      top: 63%;
+      right: 0;
+      border-top: 2px dotted lightgrey;
+      border-left: 2px dotted lightgrey;
+      width: 260px;
+    }
+
+    /* Show text under headline when hovering */
+      #events .section-item:nth-of-type(1):hover h3 {
+        padding-bottom: 34px;
+        top: 60%;
+        filter: grayscale(10%);
+      }
+
+      #events .section-item:nth-of-type(2):hover h3 {
+        padding-bottom: 34px;
+        top: 56%;
+        filter: grayscale(10%);
+      }
+
+      #events .section-item:nth-of-type(3):hover h3 {
+        padding-bottom: 34px;
+        top: 55.5%;
+        filter: grayscale(10%);
+      }
+
+      #events .section-item:nth-of-type(4):hover h3 {
+        padding-bottom: 34px;
+        top: 57%;
+        filter: grayscale(10%);
+      }
+
+  /* Dates */
+    #events .date {
+      position: absolute;
+      background-color: #ead9c8;
+      font-size: 1.5rem;
+      font-family: "IM Fell DW Pica";
+      color: darkblue;
+      opacity: 80%;
+      filter: grayscale(100%);
+      top: 17%;
+      transition: filter 0.3s ease-in-out;
+    }
+
+    #events .section-item:hover .date {
+      filter: grayscale(10%) sepia(10%);
+    }
+
+  /* Date border */
+    .date::before,
+    .date::after {
+      content: "";
+      position: absolute;
+      left: -5px;
+      right: -5px;
+      height: 0;
+      border-top: 2px dotted #ead9c8;
+    }
+
+    /* Upper border position */
+    .date::before {
+        top: -10px;
+    }
+
+    /* Bottom border position */
+    .date::after {
+      bottom: -10px;
+      border-top: none;
+      border-bottom: 2px dotted #ead9c8;
+    }
+
+  /* Date layout */
+    #events .section-item:nth-of-type(odd) .date {
+      right: 5%;
+    }
+
+    #events .section-item:nth-of-type(even) .date {
+      left: 5%;
+    }
+
+  /* Text under event headline */
+    #events .section-item .desc {
+      position: absolute;
+      background-color: #ead9c8;
+      font-family: "IM Fell DW Pica";
+      font-size: 18px;
+      opacity: 0;
+      top: 86%;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    /* Layout */
+      #events .section-item:nth-of-type(1) .desc {
+        left: 15%;
+      }
+
+      #events .section-item:nth-of-type(2) .desc {
+        right: 5%;
+      }
+
+      #events .section-item:nth-of-type(3) .desc {
+        left: 5%;
+      }
+
+      #events .section-item:nth-of-type(4) .desc {
+        right: 20%
+      }
+
+      #events .section-item:hover .desc {
+        opacity: 80%;
+      }
+
+  /* Stamp */
+  #events::before {
+    content: "";
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    right: -4%;
+    top: -10%;
+    background-image: url('../img/wine.png');  
+    opacity: 30%;
+    background-size: 300% 200%;
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+  }
+
+/*****************
+  Clients section
+*****************/
+
+  /* Slider style */
+  .slider {
+    --slider-time: 5; /* Animation duration */
+    position: relative;
+    filter: sepia(100%);
+    opacity: 80%;
+    transition: filter 0.3s ease-in-out;
+    }
+
+    .slider:hover {
+      filter: sepia(0%);
+    }
+
+  /* Image */
+  .slider-item img{ 
+    width: 200px;
+    height: auto;
+    filter: drop-shadow(0 0 5px black);
+  }
+
+  /* Items */
+    .slider-item {
+      top: 0;
+      left: 0;
+      width: 100%;
+      opacity: 0; /* Set opacity to 0 while inactive */
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    /* Items layout */
+      .slider-item:nth-child(1) {
+        position: relative;
+        left: 62%;
+        padding-top: 10%;
+      }
+
+      .slider-item:nth-child(2) {
+        position: absolute;
+        left: 18%;
+        top: 20%;
+      }
+
+  /* Set opacity to 1 when active */
+  .slider-item.active {
+    opacity: 1;
+  }
+
+  /* Center bubble */
+    .slider-item:first-child::before {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 40px;
+      background-color: black;
+      top: 50%;
+      left: -12%;
+      border-radius: 60px / 40px;
+      transition: filter 0.3s ease-in-out;
+      filter: blur(2px) sepia(100%) brightness(1.2) opacity(0.8);
+    }
+
+    .slider-item:last-child::after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 40px;
+      background-color: black;
+      top: 40%;
+      left: 26%;
+      border-radius: 60px / 40px;
+      transition: filter 0.3s ease-in-out;
+      filter: blur(2px) sepia(100%) brightness(1.2) opacity(0.8);
+    }
+
+  /* Quote */
+    blockquote {
+      position: absolute;
+      display: block;
+      color: white;
+      background-color: black;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 5px;
+      filter: blur(2px) sepia(100%) brightness(1.2) opacity(0.8);
+      transition: filter 0.3s ease-in-out;
+      box-shadow: 0 0 5px 5px black;
+    }
+
+  /* Quotes layout */
+    #clients .section-item:first-child blockquote{
+      left: -40%;
+      top: 60%;
+    }
+
+    #clients .section-item:last-child blockquote {
+      left: 44%;
+      top: 53.5%;
+    }
+
+    /* Reset filters while hovering */
+    .slider:hover .slider-item::before,
+    .slider:hover .slider-item::after,
+    .slider:hover blockquote {
+      filter: blur(0px) sepia(0%) brightness(1) opacity(1);
+    }
+
+  /* Stamp */
+  #clients::before {
+    content: "";
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    left: 14%;
+    top: -10%;
+    background-image: url('../img/wine.png');  
+    opacity: 30%;
+    background-size: 300% 200%;
+    background-position: 50% 0%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
+
+/********
+ Contact 
+********/
+
+  /* Contact form position */
+  .contact-form {
+    position: absolute;
+    top: 18%;
+    right: 15%;
+    transform: translateX(-50%);
+    z-index: 1000;
+  }
+
+  /* Submit button style */
+    .contact-form input[type="submit"] {
+      width: 30%;
+      align-self: center;
+    }
+
+    .contact-form input[type="submit"]:hover {
+      background-color: #fffef0;
+    }
+
+  /* Contact form style */
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      width: 200%;
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      box-sizing: border-box;
+      width: 100%;
+      height: 50%;
+      padding: 12px;
+      background-color: #ead9c8;
+      border: 5px solid #8a6f54;
+    }
+
+    /* Invalid input styles */
+      .contact-form input:invalid,
+      .contact-form select:invalid,
+      .contact-form textarea:invalid {
+          background-color: #f7ced3;
+      }
+    
+    /* Focus styles */
+      .contact-form input:focus,
+      .contact-form select:focus,
+      .contact-form textarea:focus {
+          outline: 2px solid blue;
+      }
+
+  /* Contact video style */
+    #contact .video-player {
+      margin-top: 390px;
+      width: 600px;
+      left: -20%;
+    }
+
+    #contact .video-player.fullscreen {
+      position: fixed;
+      margin: 0;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      z-index: 10000;
+    }
+
+  /* Contact span styles */
+  #contact span {
+    font-style: italic;
+  }
+
+  /* Span layout */
+    #contact .section-content span:nth-child(2) {
+      position: absolute;
+      bottom: 5%;
+      left: 8%;
+    }
+
+    #contact .section-content span:nth-child(3) {
+      position: absolute;
+      bottom: 15%;
+      right: 13%;
+    }
+
+  /* Bernard image style */
+    #contact .section-content span:nth-child(3)::before {
+      content: "";
+      position: absolute;
+      top: -120px;
+      left: 76px;
+      display: block; /* Display as block */
+      width: 100px;
+      height: 100px;
+      background-image: url('../img/bernard.jpg');
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
+      filter: grayscale(100%) sepia(100%);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      transition: filter 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    #contact .section-content span:nth-child(3):hover::before {
+      filter: grayscale(10%) sepia(10%);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Change linked text color while hovering */
+    #contact .section-content span:nth-child(3):hover a {
+      text-decoration: underline;
+      color: blue;
+    }
+
+  /* Benson style */
+    #contact .section-content span:nth-child(4) {
+      position: absolute;
+      top: 45%;
+      left: 16%;
+    }
+
+    #contact .section-content span:nth-child(4)::before {
+      content: "";
+      position: absolute;
+      top: -120px;
+      left: 76px;
+      display: block;
+      width: 100px;
+      height: 100px;
+      background-image: url('../img/benson.jpg');
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
+      filter: grayscale(100%) sepia(100%);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      transition: filter 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    #contact .section-content span:nth-child(4):hover::before {
+      filter: grayscale(10%) sepia(10%);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    }
+    /* Change linked text color while hovering */
+    #contact .section-content span:nth-child(4):hover a {
+      text-decoration: underline;
+      color: blue;
+    }
+
+    /* Linked text style */
+    #contact a {
+      text-decoration: none;
+      color: #8a6f54;
+      transition: color 0.3s ease-in-out, text-decoration 0.5s ease-in-out;
+    }
+
+  /* Stamp */
+  #contact::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    left: 29%;
+    top: 0%;
+    background-image: url('../img/wine.png');  
+    opacity: 30%;
+    background-size: 300% 200%;
+    background-position: 100% 0%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
+
+/******
+ Manny 
+******/
+
+  /* Manny styles */
+    #manny {
+      position: fixed;
+      z-index: 1000;
+      top: -1000%;
+      left: 40%;
+      background-color: black;
+      box-shadow: 0 0 7px 7px rgba(0, 0, 0, 1.2);
+      font-family: "IM Fell DW Pica";
+      opacity: 0%; /* Hide element until "Submit" is pressed */
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    #manny.open {
+      opacity: 100%; /* Show element if "Submit" was pressed */
+      top: 5%;
+    }
+
+  /* Manny image style */
+  #manny img {
+    width: 20%;
+    height: auto;
+    float: left;
+    margin: 20px;
+    opacity: 80%;
+    filter: drop-shadow(0 0 10px white);
+  }
+
+  /* Text styles */
+    #manny span a {
+      text-shadow: 0 0 5px white;
+    }
+
+    #manny div span {
+      color: white;
+      display: block;
+    }
+
+    #manny span:nth-child(1) {
+      font-size: 2rem;
+      padding-top: 9%;
+    }
+
+
+/*******
+ Footer
+*******/
+
+  /* Footer style */
+  footer {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    background: linear-gradient(to top, black 90%, transparent);
+    color: white;
+    text-align: center;
+    font-family: "IM Fell DW Pica";
+    height: 200px;
+  }
+
+  /* Text styles */
+    footer a {
+      text-decoration: none;
+      color: white;
+      transition: color 0.3s ease-in-out;
+    }
+
+    footer a:nth-child(1):hover {
+      color: blue;
+    }
+
+    footer a:nth-child(2):hover {
+      color: darkred;
+    }
+
+  /* Span layout */
+    footer span:nth-child(1) {
+      display: block;
+      position: absolute;
+      left: 20%;
+      bottom: 20px;
+    }
+
+    footer span:nth-child(2) {
+      display: block;
+      position: absolute;
+      right: 20%;
+      bottom: 20px;
+    }
+
+    footer span:nth-child(2) img {
+      width: 15px;
+      height: 15px;
+      padding-right: 2px;
+    }
+
+    footer span:nth-child(3) {
+      font-size: 2rem;
+      display: block;
+      position: absolute;
+      top: 50%;
+    }
+
+
+/********
+ Bernard
+********/
+
+  /* Bernard style */
+    #bernard {
+      position: fixed;
+      bottom: 10px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      border: 2px solid rgb(0, 136, 255);
+      background-color: white;
+      color: rgb(0, 136, 255);
+      opacity: 0%; /* Hide bernard on top of the site */
+      transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    }
+
+    #bernard:hover {
+      opacity: 100%;
+      background-color: rgb(0, 136, 255);
+      color: rgb(174, 255, 255)
+    }
+
+  /* Bernard content */
+    #bernard a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    #bernard i {
+      margin-top: 18px;
+    }
+
+  /* Show bernard after user has scrolled */
+    .scrolled #bernard {
+      opacity: 80%;
+      pointer-events: auto;
+    }
+
+/* End of styles.css */
